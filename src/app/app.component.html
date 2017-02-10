@@ -1,16 +1,65 @@
-<h1>{{ title }}</h1>
-
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 
-<sebm-google-map *ngIf="centerOn" [latitude]="centerOn.lat" [longitude]="centerOn.lng" [zoom]="zoom">
-    <sebm-google-map-marker
-        *ngFor="let i of coordinates"
-        [latitude]="i.lat"
-        [longitude]="i.lng">
-        <sebm-google-map-info-window [disableAutoPan]="true">
-            <h2>{{ i.name }}</h2>
-            <img style="width: 100%;" src="../assets/logos/{{ i.logo }}">
-        </sebm-google-map-info-window>
-    </sebm-google-map-marker>
-</sebm-google-map>
+<!--<alert type="success">hello</alert>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="../assets/images/banner.jpg">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>Christ Centered—Throughout each school day, students will be taught the Christian faith, from the Lutheran Confessions.</p>
+            <p>Student Focused—Each student deserves instruction directed to their individual strengths, and weaknesses, academically, emotionally, and socially.</p>
+            <p>Community Involved—Students are taught the importance of a servant attitude put into action.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li
+                    (click)="selectLocation(i)"
+                    *ngFor="let i of getList()"
+                    [class.selected]="i == selectedLocation"
+                    class="list-group-item hover pointer">
+                    {{ i.name }}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <sebm-google-map *ngIf="centerOn" [latitude]="centerOn.lat" [longitude]="centerOn.lng" [zoom]="zoom">
+                <sebm-google-map-marker
+                        *ngIf="selectedLocation"
+                        [iconUrl]="'../assets/images/luther-seal.png'"
+                        [latitude]="selectedLocation.lat"
+                        [longitude]="selectedLocation.lng">
+                </sebm-google-map-marker>
+            </sebm-google-map>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            LCMS congregations have been building and maintaining Lutheran schools since the founding of the LCMS in 1847.  Because of our strong commitment to Lutheran education, it was common for schools to be built soon after the church and be maintained by the local individual congregations to serve the needs of the children in preparing them for adulthood.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div style="border: 1pt solid black; padding: 5pt;">
+                <p>Congregations that support the Lutheran School Association:</p>
+                <ul>
+                    <li>Cross of Christ Lutheran Church, Bountiful</li>
+                    <li>Christ Lutheran Church, Murray</li>
+                    <li>First Lutheran Church, Tooele</li>
+                    <li>Grace Lutheran Church, Sandy</li>
+                    <li>Holy Trinity Lutheran Church, Riverton</li>
+                    <li>Redeemer Lutheran Church, Salt Lake City</li>
+                    <li>St. John's Lutheran Church, Salt Lake City</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

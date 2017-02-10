@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title: string = 'My first angular2-google-maps project';
-    openInfoWindow: true;
+    iconUrl: '../assets/images/luther-seal.png';
     lat: number = 40.870680;
     lng: number = -111.879241;
 
@@ -20,11 +19,22 @@ export class AppComponent {
         { name: 'Holy Trinity' , lat: 40.510202, lng: -111.937056, logo: 'holy-trinity-riverton.jpg' }
     ];
 
-    centerOn = this.coordinates[0];
+    selectedLocation = this.getList()[0];
+
+    centerOn = this.getList()[0];
 
     zoom: number = 10;
 
-    onMarkerClick(marker): void {
-        console.log(marker);
+    getList(): Array<any> {
+        this.coordinates.sort((c1, c2) => c1.name > c2.name ? 1 : 0);
+        return this.coordinates;
+    }
+
+    public selectLocation(location): void {
+        this.selectedLocation = location;
+    }
+
+    public clickMe(): void {
+        alert('grrrrrr');
     }
 }

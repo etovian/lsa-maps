@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.hover:HOVER {
+    background-color: #9ea7bc;
+    color: white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #3a6ddd !important;
+    color: white;
+}

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AlertModule } from 'ng2-bootstrap';
 
 let apiKey = 'AIzaSyC6HNgs7X3vqerCF2wgR0v3CjPru9rA5Pc';
 
@@ -17,6 +18,7 @@ let apiKey = 'AIzaSyC6HNgs7X3vqerCF2wgR0v3CjPru9rA5Pc';
         AgmCoreModule.forRoot({
             apiKey: apiKey
         }),
+        AlertModule.forRoot(),
         BrowserModule,
         CommonModule,
         FormsModule,
