@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    iconUrl: '../assets/images/luther-seal.png';
     lat: number = 40.870680;
     lng: number = -111.879241;
 
