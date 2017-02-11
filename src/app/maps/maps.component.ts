@@ -8,18 +8,23 @@ import {CongregationService} from "../services/congregation.service";
 })
 export class MapsComponent implements OnInit {
 
-    private coordinates: any[];
+    private members: any[];
     selectedLocation: any;
+    private supporters: any[];
     centerOn: any;
-    zoom: number = 10;
+    zoom: number = 9;
 
     constructor(private congregationService: CongregationService) { }
 
     ngOnInit() {
-        this.congregationService.getAll().then(coordinates => {
-            this.coordinates = coordinates;
-            this.centerOn = this.coordinates[0];
-            this.selectedLocation = this.coordinates[0];
+        this.congregationService.getMembers().then(members => {
+            this.members = members;
+            this.centerOn = this.members[0];
+            this.selectedLocation = this.members[0];
+        });
+
+        this.congregationService.getSupporters().then(supporters => {
+            this.supporters = supporters;
         });
     }
 

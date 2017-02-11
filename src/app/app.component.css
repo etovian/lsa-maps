@@ -1,3 +1,7 @@
-.sebm-google-map-container {
-    height: 300px;
+.banner {
+    background-color: #4da2df;
+    color: #e0e056;
+    /*font-size: 36pt;*/
+    text-align: center;
+    font-family: 'Hammersmith One', sans-serif;
 }
