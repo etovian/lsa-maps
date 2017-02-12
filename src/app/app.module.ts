@@ -12,17 +12,24 @@ import { AlertModule } from 'ng2-bootstrap';
 import { MapsComponent } from './maps/maps.component';
 
 import { CongregationService } from './services/congregation.service';
+import { ListGroupComponent } from './list-group/list-group.component';
+import { AdminComponent } from './admin/admin.component';
+import { ModalComponent } from './modal/modal.component';
 
 const apiKey = 'AIzaSyC6HNgs7X3vqerCF2wgR0v3CjPru9rA5Pc';
 
 const appRoutes: Routes = [
-    { path: '', component: MapsComponent }
+    { path: '', component: MapsComponent },
+    { path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        MapsComponent
+        MapsComponent,
+        ListGroupComponent,
+        AdminComponent,
+        ModalComponent
     ],
     imports: [
         AgmCoreModule.forRoot({
