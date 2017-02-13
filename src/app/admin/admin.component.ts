@@ -1,14 +1,20 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {CongregationService} from "../services/congregation.service";
 import {ModalComponent} from "../modal/modal.component";
 import {EventEmitter} from "@angular/forms/src/facade/async";
+import {FirebaseListObservable} from "angularfire2";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-admin',
     templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
+
+    private congregationsObservable: FirebaseListObservable<any>;
+    private congregationsSubscription: Subscription;
+    private congregations: any[];
 
     private members = {
         displayProperty: 'name',
@@ -32,13 +38,23 @@ export class AdminComponent implements OnInit {
 
     public editSupporterFocusTriggeringEventEmitter = new EventEmitter<boolean>();
 
-    private selectedCongregation: any;
+    selectedCongregation: any;
 
     constructor(private congregationService: CongregationService) { }
 
     ngOnInit() {
-        this.congregationService.getMembers().then(members => this.members.list = members);
-        this.congregationService.getSupporters().then(supporters => this.supporters.list = supporters);
+
+        this.congregationsObservable = this.congregationService.getCongregations()
+        this.congregationsSubscription = this.congregationsObservable
+            .subscribe((congregations) => {
+                this.congregations = congregations;
+                this.members.list = this.congregationService.getMemberCongregations(this.congregations);
+                this.supporters.list = this.congregationService.getSupporterCongregations(this.congregations);
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.congregationsSubscription.unsubscribe();
     }
 
     public addCongregation() {
@@ -61,8 +77,12 @@ export class AdminComponent implements OnInit {
         this.supporterModal.hide();
     }
 
-    saveCongregation(): void {
+    public getStatusList(): any[] {
+        return this.congregationService.getStatusList();
+    }
 
+    saveCongregation(): void {
+        this.congregationService.updateCongregation(this.selectedCongregation);
         this.memberModal.hide();
     }
 

@@ -18,6 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ModalComponent } from './modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import {LoginService} from "./services/login.service";
+import {FirebaseService} from "./services/firebase.service";
 
 const apiKey = 'AIzaSyC6HNgs7X3vqerCF2wgR0v3CjPru9rA5Pc';
 
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     ],
     providers: [
         CongregationService,
-        LoginService
+        LoginService,
+        FirebaseService
     ],
     bootstrap: [AppComponent]
 })
