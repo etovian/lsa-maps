@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import {Congregation} from "../classes/congregation";
+import {FirebaseObjectObservable, AngularFire} from "angularfire2";
+import Thenable = firebase.Thenable;
 
 @Injectable()
 export class CongregationService {
 
-    constructor() { }
+    private url = '/congregations';
+
+    constructor(private af: AngularFire) { }
+
+    add(): Thenable<any> {
+
+        return this.af.database.list(this.url).push(this.getNewCongregationTemplate());
+    }
 
     getMembers(): Promise<any[]> {
         let members = [
@@ -16,6 +25,19 @@ export class CongregationService {
         ];
         members.sort((c1, c2) => c1.name > c2.name ? 1 : 0);
         return Promise.resolve(members);
+    }
+
+    getNewCongregationTemplate(): any {
+        return {
+            name: 'New Congregation'
+        };
+    }
+
+    getStatusList(): any[] {
+        return [
+            { code: 'MEMBER', description: 'Member' },
+            { code: 'SUPPORTER', description: 'Supporter' }
+        ]
     }
 
     getSupporters(): Promise<any[]> {

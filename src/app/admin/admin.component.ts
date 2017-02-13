@@ -41,6 +41,10 @@ export class AdminComponent implements OnInit {
         this.congregationService.getSupporters().then(supporters => this.supporters.list = supporters);
     }
 
+    public addCongregation() {
+        this.congregationService.add();
+    }
+
     cancelEditMember(): void {
         this.memberModal.hide();
     }
@@ -58,11 +62,8 @@ export class AdminComponent implements OnInit {
     }
 
     saveCongregation(): void {
-        this.memberModal.hide();
-    }
 
-    saveSupporter(): void {
-        this.supporterModal.hide();
+        this.memberModal.hide();
     }
 
     selectCongregation(congregation): void {
