@@ -24,18 +24,19 @@
                     <div>{{ i.name }}</div>
                     <div *ngIf="i == selectedLocation">
                         <div>{{ i.address }}</div>
+                        <div>{{ i.city }}, {{ i.state }}  {{ i.zip }}</div>
                         <div><a [href]="i.website" target="_blank">View Website</a></div>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="col-md-6">
-            <sebm-google-map *ngIf="centerOn" [latitude]="centerOn.lat" [longitude]="centerOn.lng" [zoom]="zoom">
+            <sebm-google-map *ngIf="centerOn" [latitude]="centerOn.latitude" [longitude]="centerOn.longitude" [zoom]="zoom">
                 <sebm-google-map-marker
                         *ngIf="selectedLocation"
                         [iconUrl]="'../assets/images/luther-seal-map-marker.png'"
-                        [latitude]="selectedLocation.lat"
-                        [longitude]="selectedLocation.lng">
+                        [latitude]="selectedLocation.latitude"
+                        [longitude]="selectedLocation.longitude">
                 </sebm-google-map-marker>
             </sebm-google-map>
         </div>
@@ -52,22 +53,11 @@
                     <div>{{ i.name }}</div>
                     <div *ngIf="i == selectedLocation">
                         <div>{{ i.address }}</div>
+                        <div>{{ i.city }}, {{ i.state }}  {{ i.zip }}</div>
                         <div><a [href]="i.website" target="_blank">View Website</a></div>
                     </div>
                 </li>
             </ul>
-            <!--<div style="border: 1pt solid black; padding: 5pt;">-->
-                <!--<p>Congregations that support the Lutheran School Association:</p>-->
-                <!--<ul>-->
-                    <!--<li>Cross of Christ Lutheran Church, Bountiful</li>-->
-                    <!--<li>Christ Lutheran Church, Murray</li>-->
-                    <!--<li>First Lutheran Church, Tooele</li>-->
-                    <!--<li>Grace Lutheran Church, Sandy</li>-->
-                    <!--<li>Holy Trinity Lutheran Church, Riverton</li>-->
-                    <!--<li>Redeemer Lutheran Church, Salt Lake City</li>-->
-                    <!--<li>St. John's Lutheran Church, Salt Lake City</li>-->
-                <!--</ul>-->
-            <!--</div>-->
         </div>
     </div>
     <div class="row">

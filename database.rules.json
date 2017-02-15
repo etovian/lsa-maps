@@ -1,6 +1,6 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": "true",
+    ".write": "root.child('authorizedUsers').child(auth.uid).child('active').val() === true"
   }
 }
